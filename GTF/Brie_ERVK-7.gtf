@@ -1,0 +1,10 @@
+chr1	hml2	gene	155626755	155648662	.	-	.	gene_id "ERVK-7.long"; transcript_id "ERVK-7.long";
+chr1	hml2	transcript	155626755	155648662	.	-	.	gene_id "ERVK-7.long"; transcript_id "ERVK-7.long";
+chr1	hml2	exon	155626755	155634846	.	-	.	gene_id "ERVK-7.long"; transcript_id "ERVK-7.long";
+chr1	hml2	exon	155637394	155637492	.	-	.	gene_id "ERVK-7.long"; transcript_id "ERVK-7.long";
+chr1	hml2	exon	155648406	155648662	.	-	.	gene_id "ERVK-7.long"; transcript_id "ERVK-7.long";
+chr1	hml2	transcript	155626755	155637604	.	-	.	gene_id "ERVK-7.short"; transcript_id "ERVK-7.short";
+chr1	hml2	exon	155626755	155634846	.	-	.	gene_id "ERVK-7.short"; transcript_id "ERVK-7.short";
+chr1	hml2	exon	155637394	155637604	.	-	.	gene_id "ERVK-7.short"; transcript_id "ERVK-7.short";
+chr1	hml2	transcript	155626666	155635845	.	-	.	gene_id "ERVK-7"; transcript_id "ERVK-7";
+chr1	hml2	exon	155626666	155635845	.	-	.	gene_id "ERVK-7"; transcript_id "ERVK-7";
