@@ -10,7 +10,7 @@ TCGA_LUNG_TPM <- read.delim("https://figshare.com/ndownloader/files/47070841")
 luad_pat <- read.delim("https://figshare.com/ndownloader/files/47070835", header=FALSE)
 luad_pat <- data.frame(t(luad_pat))
 
-##Fig 3C
+##Fig 3B
 TCGA_LUNG_TPM_nec <- data.frame(melt(cbind(name=rownames(TCGA_LUNG_TPM)[1:4], TCGA_LUNG_TPM[1:4,])))
 TCGA_LUNG_TPM_nec$value <- log(as.numeric(TCGA_LUNG_TPM_nec$value)+1, base=2)
 TCGA_LUNG_TPM_nec$cohort <- "LUSC"
@@ -33,7 +33,7 @@ tcga <- tcga + xlab("") + ylab("log2 (TPM)") + stat_compare_means(comparisons = 
                                                                                                                                                                axis.title.y = element_text(colour = "black",size = 10),axis.text.y = element_text(colour = "black",size = 10),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(),axis.line = element_line(colour = "black")) 
 tcga <- tcga + scale_y_continuous(limits=c(0,9))+theme(strip.background=element_rect(colour="white",fill="white"))
 
-## correlation
+## Fig 3C
 TCGA_LUNG_TPM_cor <- data.frame(t(TCGA_LUNG_TPM[1:4,]))
 TCGA_LUNG_TPM_cor$final_label <- unlist(TCGA_LUNG_TPM_nec[match(rownames(TCGA_LUNG_TPM_cor), TCGA_LUNG_TPM_nec$variable),"final_label"])
 TCGA_LUNG_TPM_cor <- na.omit(TCGA_LUNG_TPM_cor)
@@ -50,3 +50,21 @@ cor2 <- cor2 + stat_cor(method = "spearman", hjust=0.5, vjust=0, label.x = TCGA_
                         label.y=TCGA_LUNG_TPM_cor$HML2_1q22)+stat_smooth(method='lm', formula = 'y ~ x',size=0.8)+ scale_x_continuous(limits=c(0,8.5))+ scale_y_continuous(limits=c(0,8))
 cor1 <- cor1 + theme(strip.background=element_rect(colour="white",fill="white"))
 cor2 <- cor2 + theme(strip.background=element_rect(colour="white",fill="white"))
+
+
+
+## Fig 3D
+ervk7_all_tpm <- TCGA_LUNG_TPM_nec[1:3,]
+ervk7_all_tpm <- data.frame(t(ervk7_all_tpm))
+ervk7_all_tpm$cohort <- "LUSC"
+ervk7_all_tpm$cohort[rownames(ervk7_all_tpm) %in% luad_pat$t.luad_pat.] <- "LUAD"
+ervk7_all_tpm$cohort[substr(rownames(ervk7_all_tpm),14,16)=="11A"] <- "Normal"
+ervk7_all_tpm <- ervk7_all_tpm[substr(rownames(ervk7_all_tpm),14,16) %in% c("01A", "11A"),]
+ervk7_all_tpm$norm_long <- (6.614e-01)*ervk7_all_tpm$HML2_1q22.long
+ervk7_all_tpm$norm_short <- (2.538e-01)*ervk7_all_tpm$HML2_1q22.short
+ervk7_all_tpm$ratio <- (ervk7_all_tpm$norm_long+1) / (ervk7_all_tpm$norm_short+1)
+ervk7_all_tpm$logratio <- log(as.numeric(ervk7_all_tpm$ratio), base=2)
+ervk7_all_tpm$cohort[ervk7_all_tpm$cohort=="LUSC"] <- "LUSC\n(N=496)"
+ervk7_all_tpm$cohort[ervk7_all_tpm$cohort=="LUAD"] <- "LUAD\n(N=510)"
+ervk7_all_tpm$cohort[ervk7_all_tpm$cohort=="Normal"] <- "Normal\n(N=107)"
+prop <- ggplot(ervk7_all_tpm, aes(x=cohort, y=logratio, fill=cohort)) + scale_fill_manual(values=c("#B24745FF","#00a1d5ff","#DF8F44FF"))+ geom_quasirandom(shape=21, fill="white", alpha=0.1) + geom_boxplot(width=0.2) + ylab("log2 (ERVK-7.long/ERVK-7short)")+ My_Theme2 + xlab("")+geom_hline(yintercept=0, lty=2)
