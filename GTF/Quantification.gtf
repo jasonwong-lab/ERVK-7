@@ -1,0 +1,9 @@
+chr1	hg38_knownGene	gene	155648406	155648662	.	-	.	gene_id "HML2_1q22.long";
+chr1	hg38_knownGene	transcript	155648406	155648662	.	-	.	gene_id "HML2_1q22.long"; transcript_id "HML2_1q22.long";
+chr1	hg38_knownGene	exon	155648406	155648662	.	-	.	gene_id "HML2_1q22.long"; transcript_id "HML2_1q22.long";
+chr1	hg38_knownGene	gene	155637494	155637604	.	-	.	gene_id "HML2_1q22.short";
+chr1	hg38_knownGene	transcript	155637494	155637604	.	-	.	gene_id "HML2_1q22.short"; transcript_id "HML2_1q22.short";
+chr1	hg38_knownGene	exon	155637494	155637604	.	-	.	gene_id "HML2_1q22.short"; transcript_id "HML2_1q22.short";
+chr1	hg38_knownGene	gene	155626666	155635845	.	-	.	gene_id "HML2_1q22";
+chr1	hg38_knownGene	transcript	155626666	155635845	.	-	.	gene_id "HML2_1q22"; transcript_id "HML2_1q22";
+chr1	hg38_knownGene	exon	155626666	155635845	.	-	.	gene_id "HML2_1q22"; transcript_id "HML2_1q22";
