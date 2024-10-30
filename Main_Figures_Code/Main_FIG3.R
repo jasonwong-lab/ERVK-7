@@ -54,7 +54,7 @@ cor2 <- cor2 + theme(strip.background=element_rect(colour="white",fill="white"))
 
 
 ## Fig 3D
-ervk7_all_tpm <- TCGA_LUNG_TPM_nec[1:3,]
+ervk7_all_tpm <- TCGA_LUNG_TPM[1:3,]
 ervk7_all_tpm <- data.frame(t(ervk7_all_tpm))
 ervk7_all_tpm$cohort <- "LUSC"
 ervk7_all_tpm$cohort[rownames(ervk7_all_tpm) %in% luad_pat$t.luad_pat.] <- "LUAD"
@@ -67,4 +67,4 @@ ervk7_all_tpm$logratio <- log(as.numeric(ervk7_all_tpm$ratio), base=2)
 ervk7_all_tpm$cohort[ervk7_all_tpm$cohort=="LUSC"] <- "LUSC\n(N=496)"
 ervk7_all_tpm$cohort[ervk7_all_tpm$cohort=="LUAD"] <- "LUAD\n(N=510)"
 ervk7_all_tpm$cohort[ervk7_all_tpm$cohort=="Normal"] <- "Normal\n(N=107)"
-prop <- ggplot(ervk7_all_tpm, aes(x=cohort, y=logratio, fill=cohort)) + scale_fill_manual(values=c("#B24745FF","#00a1d5ff","#DF8F44FF"))+ geom_quasirandom(shape=21, fill="white", alpha=0.1) + geom_boxplot(width=0.2) + ylab("log2 (ERVK-7.long/ERVK-7short)")+ My_Theme2 + xlab("")+geom_hline(yintercept=0, lty=2)
+prop <- ggplot(ervk7_all_tpm, aes(x=cohort, y=logratio, fill=cohort)) + scale_fill_manual(values=c("#B24745FF","#00a1d5ff","#DF8F44FF"))+ geom_quasirandom(shape=21, fill="white", alpha=0.1) + geom_boxplot(width=0.2) + ylab("log2 (ERVK-7.long/ERVK-7short)")+ My_Theme  + xlab("")+geom_hline(yintercept=0, lty=2) +geom_point(data = aggregate(logratio ~ cohort, data = ervk7_all_tpm, mean),aes(x = cohort, y = logratio),shape=8, color = "white", size = 1)
